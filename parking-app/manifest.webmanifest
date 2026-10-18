@@ -1,6 +1,6 @@
 {
-  "name": "駐車場タイマー（写真）",
-  "short_name": "駐車場（写真）",
+  "name": "駐車場タイマー",
+  "short_name": "駐車場タイマー",
   "description": "駐車時間と料金をかんたん管理",
   "start_url": "./index.html",
   "scope": "./",

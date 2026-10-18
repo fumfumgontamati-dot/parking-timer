@@ -1,5 +1,5 @@
-const V='photo-v3';
-const FILES=['./','./index.html','./manifest.webmanifest','./icon-180.png','./icon-192.png','./icon-512.png'];
+const V='parking-v17';
+const FILES=['./','./index.html','./manifest.webmanifest','./icon-180.png','./icon-192.png','./icon-512.png','./map.jpg'];
 self.addEventListener('install',e=>{e.waitUntil(caches.open(V).then(c=>c.addAll(FILES)).then(()=>self.skipWaiting()))});
-self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(k=>Promise.all(k.filter(x=>x.startsWith('photo-v')&&x!==V).map(x=>caches.delete(x)))).then(()=>self.clients.claim()))});
+self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(k=>Promise.all(k.filter(x=>x.startsWith('parking-v')&&x!==V).map(x=>caches.delete(x)))).then(()=>self.clients.claim()))});
 self.addEventListener('fetch',e=>{if(e.request.method!=='GET')return;const pn=new URL(e.request.url).pathname;if(pn.endsWith('/ad.json')||pn.endsWith('/')||pn.endsWith('.html')||pn.endsWith('.js')||pn.endsWith('.jpg')){e.respondWith(fetch(e.request).then(res=>{const c=res.clone();caches.open(V).then(ch=>ch.put(e.request,c));return res}).catch(()=>caches.match(e.request)));return}e.respondWith(caches.match(e.request).then(r=>r||fetch(e.request).then(res=>{const c=res.clone();caches.open(V).then(ch=>ch.put(e.request,c));return res}).catch(()=>caches.match('./index.html'))))});

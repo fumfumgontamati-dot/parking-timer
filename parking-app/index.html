@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="ja"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>駐車場タイマー（写真）</title>
+<title>PARKING 駐車場タイマー</title>
 <link rel="manifest" href="manifest.webmanifest">
 <meta name="theme-color" content="#fcf7f1">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta name="apple-mobile-web-app-title" content="駐車場（写真）">
+<meta name="apple-mobile-web-app-title" content="駐車場タイマー">
 <link rel="apple-touch-icon" href="icon-180.png">
 <link rel="icon" href="icon-192.png">
 <style>
@@ -149,7 +149,7 @@ h1 svg{color:inherit;font-size:30px;vertical-align:-4px}
 .fl.up{animation-name:rise}
 @keyframes sway{from{transform:translateX(calc(var(--sw)*-1)) rotate(calc(var(--rt,40deg)*-1))}to{transform:translateX(var(--sw)) rotate(var(--rt,40deg))}}
 .lr{flex-wrap:wrap;gap:0 14px}
-.rc>div:not(.ico){text-align:left;padding-left:0;padding-right:0}.rc small{text-align:left}.rc b{display:block;text-align:center;padding-right:24px}#mt{display:none!important}.pc>div:nth-child(2){text-align:center;padding-right:40px}.nx{display:none!important}.hero{flex-direction:row!important;gap:14px!important;align-items:stretch!important}.hero .tx{flex:1!important;min-width:0;justify-content:center!important;padding-top:0!important}.pbox{margin:0!important;width:42%!important;flex:none!important;min-height:0!important;border:2px dashed var(--ln)!important;border-radius:24px!important;display:flex!important;flex-direction:column;align-items:center;justify-content:center;gap:6px;overflow:hidden;text-align:center}.pbox.has,.pbox:has(img){border-style:solid!important}.pbox .ci{width:40px;height:40px;border-radius:50%;background:var(--gr2);color:var(--gr);display:flex;align-items:center;justify-content:center;font-size:22px}.pbox b{font-size:14px}.pbox small{color:var(--sub);font-size:11px;padding:0 6px}.pbox img{width:100%;height:100%;object-fit:cover}.hero h2 span{margin-left:.2em!important}</style></head><body>
+.rc>div:not(.ico){text-align:left;padding-left:0;padding-right:0}.rc small{text-align:left}.rc b{display:block;text-align:center;padding-right:24px}#mt{display:none!important}.pc>div:nth-child(2){text-align:center;padding-right:40px}.nx{display:none!important}</style></head><body>
 <svg width="0" height="0" style="position:absolute"><defs>
 <symbol id="car" viewBox="0 0 24 24"><path d="M5 11.5l1.5-4.2A2 2 0 018.4 6h7.2a2 2 0 011.9 1.3L19 11.5"/><rect x="3" y="11" width="18" height="6.5" rx="2.2"/><circle cx="7.3" cy="14.2" r=".7" fill="currentColor"/><circle cx="16.7" cy="14.2" r=".7" fill="currentColor"/><rect x="5" y="16.5" width="3.6" height="4.2" rx="1.4" fill="currentColor"/><rect x="15.4" y="16.5" width="3.6" height="4.2" rx="1.4" fill="currentColor"/></symbol>
 <symbol id="img" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="9" cy="9" r="1.5"/><path d="M21 15l-5-5L5 21"/></symbol>
@@ -227,7 +227,7 @@ const fmtD=m=>m>=60?Math.floor(m/60)+'時間'+(m%60?m%60+'分':''):m+'分';
 const calc=sec=>Math.max(1,Math.ceil(sec/60/cfg.unit))*cfg.price; // 始まった単位ごとに加算
 const rateText=()=>(cfg.unit%60===0?cfg.unit/60+'時間':cfg.unit+'分')+'ごとに ¥'+cfg.price;
 function drawAll(){$$('.rate').forEach(e=>e.textContent=rateText());$$('.nm').forEach(e=>e.textContent=cfg.notify)}
-function drawPhoto(){const pp=cur&&cur.photo,pi=$('#pimg');pi.className='pi'+(pp?' has':'');pi.innerHTML=pp?'<img src="'+pp+'">':'<span><svg style="font-size:24px"><use href="#cam"/></svg>駐車場の写真</span>';$('#pbox').innerHTML=photo?'<img src="'+photo+'" alt="写真">':'<div class="ci"><svg><use href="#img"/></svg></div><b>家族の写真</b><small>タップして選べます</small>'}
+function drawPhoto(){const pp=cur&&cur.photo,pi=$('#pimg');pi.className='pi'+(pp?' has':'');pi.innerHTML=pp?'<img src="'+pp+'">':'<span><svg style="font-size:24px"><use href="#cam"/></svg>駐車場の写真</span>';$('#pbox').innerHTML='<img src="map.jpg" alt="地図">'}
 let ptarget='home';
 function curPhoto(){return ptarget==='park'?(cur&&cur.photo):photo}
 function openPhoto(t){ptarget=t;$('#bShow').style.display=curPhoto()?'flex':'none';$('#ov-photo').classList.add('on')}
@@ -238,7 +238,7 @@ $('#bCam').onclick=()=>$('#fCam').click();$('#bLib').onclick=()=>$('#fLib').clic
 $('#bDel').onclick=()=>{if(ptarget==='park'&&cur){cur.photo=null;sv('pk_cur',cur)}else{photo=null;sv('pk_photo',null)}drawPhoto();closeAll()};$('#bShow').onclick=()=>{const u=curPhoto();if(!u)return;closeAll();$('#pvi').src=u;$('#pv').classList.add('on')};$('#pv').onclick=()=>{$('#pv').classList.remove('on');$('#pvi').className=''};$('#pvi').onclick=e=>{e.stopPropagation();e.target.classList.toggle('z')};
 const closeAll=()=>$$('.ov').forEach(o=>o.classList.remove('on'));
 $$('[data-close]').forEach(b=>b.onclick=closeAll);$$('.ov').forEach(o=>o.onclick=e=>{if(e.target===o)closeAll()});
-$('#pbox').onclick=()=>openPhoto('home');$('#pimg').onclick=()=>openPhoto('park');
+$('#pbox').onclick=()=>{$('#pvi').src='map.jpg';$('#pvi').className='';$('#pv').scrollTo(0,0);$('#pv').classList.add('on')};$('#pimg').onclick=()=>openPhoto('park');
 function openRate(){draft={...cfg};fillRate();$('#ov-rate').classList.add('on')}
 function fillRate(){$('#sUnit').value=draft.unit;$('#sPrice').value=draft.price;$$('#ov-rate .nm').forEach(e=>e.textContent=draft.notify);$$('[data-u]').forEach(b=>b.classList.toggle('on',+b.dataset.u===+draft.unit))}
 $('#rc').onclick=openRate;$('#rr').onclick=openRate;$('#ed').onclick=openRate;
