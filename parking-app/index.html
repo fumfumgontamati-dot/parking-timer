@@ -149,7 +149,7 @@ h1 svg{color:inherit;font-size:30px;vertical-align:-4px}
 .fl.up{animation-name:rise}
 @keyframes sway{from{transform:translateX(calc(var(--sw)*-1)) rotate(calc(var(--rt,40deg)*-1))}to{transform:translateX(var(--sw)) rotate(var(--rt,40deg))}}
 .lr{flex-wrap:wrap;gap:0 14px}
-.rc>div:not(.ico){text-align:left;padding-left:0;padding-right:0}.rc small{text-align:left}.rc b{display:block;text-align:center;padding-right:24px}#mt{display:none!important}.pc>div:nth-child(2){text-align:center;padding-right:78px}</style></head><body>
+.rc>div:not(.ico){text-align:left;padding-left:0;padding-right:0}.rc small{text-align:left}.rc b{display:block;text-align:center;padding-right:24px}#mt{display:none!important}.pc>div:nth-child(2){text-align:center;padding-right:40px}.nx{display:none!important}</style></head><body>
 <svg width="0" height="0" style="position:absolute"><defs>
 <symbol id="car" viewBox="0 0 24 24"><path d="M5 11.5l1.5-4.2A2 2 0 018.4 6h7.2a2 2 0 011.9 1.3L19 11.5"/><rect x="3" y="11" width="18" height="6.5" rx="2.2"/><circle cx="7.3" cy="14.2" r=".7" fill="currentColor"/><circle cx="16.7" cy="14.2" r=".7" fill="currentColor"/><rect x="5" y="16.5" width="3.6" height="4.2" rx="1.4" fill="currentColor"/><rect x="15.4" y="16.5" width="3.6" height="4.2" rx="1.4" fill="currentColor"/></symbol>
 <symbol id="img" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="9" cy="9" r="1.5"/><path d="M21 15l-5-5L5 21"/></symbol>
@@ -193,7 +193,7 @@ h1 svg{color:inherit;font-size:30px;vertical-align:-4px}
  <div class="pinkc"><div class="ico"><svg><use href="#sl"/></svg></div><b>駐車場に合わせて設定</b><p>料金の単位と金額を登録して、更新前のお知らせを受け取れます。</p></div>
  <div class="wc"><button class="rr" id="rr"><div><small>料金単位</small><b class="rate"></b></div></button>
   <button class="ed" id="ed">料金単位・金額を変更<svg style="font-size:26px"><use href="#pen"/></svg></button></div>
- <div class="bc"><div class="ico"><svg><use href="#bell"/></svg></div><div><b>料金更新のお知らせ</b><p>更新の<span class="nm"></span>分前と、その後は料金単位ごとに通知します。</p><em>駐車スタート時に通知を設定します</em></div></div>
+ <div class="bc nx"><div class="ico"><svg><use href="#bell"/></svg></div><div><b>料金更新のお知らせ</b><p>更新の<span class="nm"></span>分前と、その後は料金単位ごとに通知します。</p><em>駐車スタート時に通知を設定します</em></div></div>
 </section>
 </div>
 
@@ -204,9 +204,9 @@ h1 svg{color:inherit;font-size:30px;vertical-align:-4px}
  <div class="st"><div><h3>料金を設定</h3><p>スタートした後でも変更できます</p></div><button class="x" data-close><svg><use href="#xx"/></svg></button></div>
  <h4>料金が上がる単位</h4><div class="fb u2"><div class="ur"><input id="sUnit" type="number" min="1" inputmode="numeric"><span class="u">分ごと</span></div><div class="cr"><button class="ch2 np" id="um">− 30分</button><button class="ch2 np" id="up">＋ 30分</button></div></div>
  <h4>1単位あたりの料金</h4><div class="fb pr"><span style="font-size:26px;font-weight:700">¥</span><input class="w" id="sPrice" type="number" min="0" inputmode="numeric"><span style="color:var(--sub)">円</span></div>
- <h4>通知タイミング</h4><div class="fb"><span class="nt"><span class="nm"></span>分前</span><button class="np" id="nm5">− 5分</button><button class="np" id="np5">＋ 5分</button></div>
- <div class="info"><svg><use href="#bell"/></svg><span>料金更新の<span class="nm"></span>分前に通知し、その後は設定した単位ごとに繰り返します。</span></div>
- <button class="sv" id="save">設定を保存</button><div class="lr"><button class="lnk" id="bn">通知を許可する</button><button class="lnk" id="bt2">音を試す</button><button class="lnk" id="bt3">演出を試す</button><button class="lnk" id="bc">履歴をすべて消す</button></div></div></div>
+ <h4 class="nx">通知タイミング</h4><div class="fb nx"><span class="nt"><span class="nm"></span>分前</span><button class="np" id="nm5">− 5分</button><button class="np" id="np5">＋ 5分</button></div>
+ <div class="info nx"><svg><use href="#bell"/></svg><span>料金更新の<span class="nm"></span>分前に通知し、その後は設定した単位ごとに繰り返します。</span></div>
+ <button class="sv" id="save">設定を保存</button><div class="lr"><button class="lnk nx" id="bn">通知を許可する</button><button class="lnk nx" id="bt2">音を試す</button><button class="lnk" id="bt3">演出を試す</button><button class="lnk" id="bc">履歴をすべて消す</button></div></div></div>
 
 <div class="ov" id="ov-photo"><div class="sh"><div class="hd"></div><div class="st"><h3>写真を選択</h3><button class="x" data-close><svg><use href="#xx"/></svg></button></div>
  <button class="pa" id="bShow"><svg><use href="#eye"/></svg>写真を表示</button><button class="pa" id="bCam"><svg><use href="#cam"/></svg>写真を撮る</button><button class="pa" id="bLib"><svg><use href="#img"/></svg>端末の写真から選ぶ</button><button class="pa" id="bDel" style="color:var(--pk)"><svg><use href="#xx"/></svg>写真を削除</button></div></div>
