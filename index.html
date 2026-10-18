@@ -227,7 +227,7 @@ const fmtD=m=>m>=60?Math.floor(m/60)+'時間'+(m%60?m%60+'分':''):m+'分';
 const calc=sec=>Math.max(1,Math.ceil(sec/60/cfg.unit))*cfg.price; // 始まった単位ごとに加算
 const rateText=()=>(cfg.unit%60===0?cfg.unit/60+'時間':cfg.unit+'分')+'ごとに ¥'+cfg.price;
 function drawAll(){$$('.rate').forEach(e=>e.textContent=rateText());$$('.nm').forEach(e=>e.textContent=cfg.notify)}
-function drawPhoto(){const pp=cur&&cur.photo,pi=$('#pimg');pi.className='pi'+(pp?' has':'');pi.innerHTML=pp?'<img src="'+pp+'">':'<span><svg style="font-size:24px"><use href="#cam"/></svg>駐車場の写真</span>';$('#pbox').innerHTML=photo?'<img src="'+photo+'" alt="写真">':'<div class="ci"><svg><use href="#img"/></svg></div><b>家族の写真</b><small>タップして選べます</small>'}
+function drawPhoto(){const pp=cur&&cur.photo,pi=$('#pimg');pi.className='pi'+(pp?' has':'');pi.innerHTML=pp?'<img src="'+pp+'">':'<span><svg style="font-size:24px"><use href="#cam"/></svg>駐車場の写真</span>';$('#pbox').innerHTML=photo?'<img src="'+photo+'" alt="写真">':'<div class="ci"><svg><use href="#img"/></svg></div><b>お気に入りの写真</b><small>タップして選べます</small>'}
 let ptarget='home';
 function curPhoto(){return ptarget==='park'?(cur&&cur.photo):photo}
 function openPhoto(t){ptarget=t;$('#bShow').style.display=curPhoto()?'flex':'none';$('#ov-photo').classList.add('on')}
