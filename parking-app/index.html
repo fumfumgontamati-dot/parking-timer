@@ -202,7 +202,7 @@ h1 svg{color:inherit;font-size:30px;vertical-align:-4px}
 <div id="bye"><div id="lv"></div><div><div id="fzw"><div id="fz"></div></div><p>おかえりなさい</p><p>帰りの運転 気を付けてね<svg><use href="#heart"/></svg></p></div></div>
 <div class="ov" id="ov-rate"><div class="sh"><div class="hd"></div>
  <div class="st"><div><h3>料金を設定</h3><p>スタートした後でも変更できます</p></div><button class="x" data-close><svg><use href="#xx"/></svg></button></div>
- <h4>料金が上がる単位</h4><div class="fb u2"><div class="ur"><input id="sUnit" type="number" min="1" inputmode="numeric"><span class="u">分ごと</span></div><div class="cr"><button class="ch2 np" id="um">− 30分</button><button class="ch2 np" id="up">＋ 30分</button></div></div>
+ <h4>料金が上がる単位</h4><div class="fb u2"><div class="ur"><input id="sUnit" type="number" min="1" inputmode="numeric"><span class="u">分ごと</span></div><div class="cr"><button class="ch2 np" id="um">− 10分</button><button class="ch2 np" id="up">＋ 10分</button></div></div>
  <h4>1単位あたりの料金</h4><div class="fb pr"><span style="font-size:26px;font-weight:700">¥</span><input class="w" id="sPrice" type="number" min="0" inputmode="numeric"><span style="color:var(--sub)">円</span></div>
  <h4 class="nx">通知タイミング</h4><div class="fb nx"><span class="nt"><span class="nm"></span>分前</span><button class="np" id="nm5">− 5分</button><button class="np" id="np5">＋ 5分</button></div>
  <div class="info nx"><svg><use href="#bell"/></svg><span>料金更新の<span class="nm"></span>分前に通知し、その後は設定した単位ごとに繰り返します。</span></div>
@@ -245,7 +245,7 @@ $('#rc').onclick=openRate;$('#rr').onclick=openRate;$('#ed').onclick=openRate;
 $$('[data-u]').forEach(b=>b.onclick=()=>{draft.unit=+b.dataset.u;fillRate()});
 $('#sUnit').oninput=e=>{draft.unit=+e.target.value;$$('[data-u]').forEach(b=>b.classList.toggle('on',+b.dataset.u===draft.unit))};
 $('#sPrice').oninput=e=>draft.price=+e.target.value;
-$('#nm5').onclick=()=>{draft.notify=Math.max(5,draft.notify-5);fillRate()};$('#um').onclick=()=>{draft.unit=Math.max(30,(Math.ceil(draft.unit/30)-1)*30);draft.notify=Math.min(draft.notify,draft.unit);fillRate()};$('#up').onclick=()=>{draft.unit=(Math.floor(draft.unit/30)+1)*30;fillRate()};$('#np5').onclick=()=>{draft.notify=Math.min(Math.max(5,draft.unit),draft.notify+5);fillRate()};
+$('#nm5').onclick=()=>{draft.notify=Math.max(5,draft.notify-5);fillRate()};$('#um').onclick=()=>{draft.unit=Math.max(10,(Math.ceil(draft.unit/10)-1)*10);draft.notify=Math.min(draft.notify,draft.unit);fillRate()};$('#up').onclick=()=>{draft.unit=(Math.floor(draft.unit/10)+1)*10;fillRate()};$('#np5').onclick=()=>{draft.notify=Math.min(Math.max(5,draft.unit),draft.notify+5);fillRate()};
 $('#save').onclick=()=>{if(!(draft.unit>0)||!(draft.price>=0))return;cfg={unit:draft.unit,price:draft.price,notify:Math.min(draft.notify,draft.unit)};sv('pk_cfg',cfg);drawAll();closeAll();tick()};
 function wav(sec,fn){const sr=8000,n=Math.floor(sr*sec),b=new ArrayBuffer(44+n),v=new DataView(b),w=(o,t)=>{for(let i=0;i<t.length;i++)v.setUint8(o+i,t.charCodeAt(i))};w(0,'RIFF');v.setUint32(4,36+n,true);w(8,'WAVEfmt ');v.setUint32(16,16,true);v.setUint16(20,1,true);v.setUint16(22,1,true);v.setUint32(24,sr,true);v.setUint32(28,sr,true);v.setUint16(32,1,true);v.setUint16(34,8,true);w(36,'data');v.setUint32(40,n,true);for(let i=0;i<n;i++)v.setUint8(44+i,128+Math.round(fn(i/sr)));return URL.createObjectURL(new Blob([b],{type:'audio/wav'}))}
 let snd=ld('pk_snd',true);let ka=null,ba=null;try{ka=new Audio(wav(2,()=>0));ka.loop=true;ba=new Audio(wav(1,t=>t%.3<.18&&t<.9?100*Math.sin(6.2832*880*t):0))}catch(e){}
